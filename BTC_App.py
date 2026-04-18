@@ -361,7 +361,7 @@ class FXTradingApp:
                     self.positions.append({"price": current_ask, "amount": LOT_SIZE})
                     self.root.after(0, self.log, f"★【AI購入】{int(current_ask)}円 (支払:{int(actual_payment)}円)")
                     last_grid_price = current_ask
-                else
+                else:
                     last_grid_price = current_ask
 
             elif current_ask > last_grid_price + GRID_INTERVAL:
