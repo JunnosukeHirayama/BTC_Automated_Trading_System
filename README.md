@@ -4,7 +4,7 @@
 
 ## Demo / Visuals
 
-![Trading Dashboard](image/dashboard.png)
+<img src="Images/111125.png" width=300>
 
 ## Overview
 
