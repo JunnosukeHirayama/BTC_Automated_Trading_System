@@ -83,7 +83,7 @@ class FXTradingApp:
         self.label_pos_info = tk.Label(asset_frame, text="保有ポジション: 0 BTC (評価額: 0円)", font=("Helvetica", 10), fg="gray")
         self.label_pos_info.pack(anchor="w")
 
-        # 指標表示エリア
+        # 指標表示
         indicator_frame = tk.LabelFrame(root, text="Technical Indicators", font=("Helvetica", 10), padx=10, pady=5)
         indicator_frame.pack(pady=5, padx=10, fill="x")
 
@@ -162,7 +162,6 @@ class FXTradingApp:
                 print(traceback.format_exc())
                 time.sleep(5)
 
-    # ★修正箇所1: GMOコインのブロック回避のためのヘッダー追加
     def get_market_data(self):
         url = "https://api.coin.z.com/public/v1/ticker?symbol=BTC"
         try:
@@ -185,7 +184,6 @@ class FXTradingApp:
             self.root.after(0, self.log, f"通信エラー: {e}")
             return None
 
-    # ★修正箇所2: yfinanceを使わず、リアルタイムデータのみで起動
     def fetch_initial_data(self):
         self.log("リアルタイムモードで開始します...")
         return pd.DataFrame()
@@ -204,7 +202,6 @@ class FXTradingApp:
         gain = (delta.where(delta > 0, 0)).rolling(window=RSI_PERIOD).mean()
         loss = (-delta.where(delta < 0, 0)).rolling(window=RSI_PERIOD).mean()
         
-        # エラー回避: データが足りない場合は50を返す
         if len(df) < RSI_PERIOD or loss.iloc[-1] == 0:
             current_rsi = 50
         else:
