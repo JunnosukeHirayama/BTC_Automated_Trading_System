@@ -96,7 +96,7 @@ class FXTradingApp:
         self.label_support = tk.Label(indicator_frame, text="Support: ---", font=("Helvetica", 12))
         self.label_support.grid(row=0, column=2, padx=15)
 
-        self.label_judgment = tk.Label(root, text="【AI判断】 待機中", font=("Helvetica", 14, "bold"), fg="gray", bg="#f0f0f0", pady=10)
+        self.label_judgment = tk.Label(root, text="【判断】 待機中", font=("Helvetica", 14, "bold"), fg="gray", bg="#f0f0f0", pady=10)
         self.label_judgment.pack(fill="x")
 
         # ボタン
@@ -147,7 +147,7 @@ class FXTradingApp:
         if self.is_running:
             self.is_running = False
             self.label_title.config(text="■ 停止中", fg="red")
-            self.label_judgment.config(text="【AI判断】 停止", bg="gray", fg="white")
+            self.label_judgment.config(text="【判断】 停止", bg="gray", fg="white")
             self.btn_start["state"] = "normal"
             self.btn_stop["state"] = "disabled"
             self.log("停止しました。")
